@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1 id="heading"><%= newDate %> List</h1>
+    <div class="box">
+        
+   
+
+   <% items.forEach((item) => { %>
+    <div class="item">
+    <input type="checkbox">
+    <p><%= item %></p>
+</div>
+  <% }) %>
+
+        
+    <form action="/add" method="post">
+        <input type="text" name="item" placeholder="New Item" >
+        <button>+</button>
+    </form>
+</div>
+    
+</body>
+</html>
