@@ -14,40 +14,23 @@ const itemsSchema ={
     name: String
 }
 const Item = mongoose.model("Item", itemsSchema)
-const item1 = new Item({
-    name:"cook Food"
-})
-const item2 = new Item({
-    name:"eat Food"
-})
-const item3 = new Item({
-    name:"serve Food"
-})
-
-const defaultItems = [item1,item2,item3]
 
 
 app.get("/", async (req, res) => {
     try {
+      
+      
       const date = new Date();
       const options = { weekday: 'long', day: 'numeric', month: 'long' };
       const formattedDate = date.toLocaleDateString('en-US', options);
   
       const foundItems = await Item.find({});
-
-    if(foundItems.length === 0){
-        Item.insertMany(defaultItems)
-        res.redirect("/")
-
-
-    }else{
-      
-        res.render("index.ejs", {newDate: formattedDate, items: foundItems,  });
+        res.render("index.ejs", {newDate: formattedDate, items: foundItems  });
     }
      
-    } catch (error) {
+     catch (error) {
       console.error('Error fetching items:', error);
-      res.status(500).send('Internal Server Error');
+      res.send('Internal Server Error');
     }
   });
 
@@ -59,8 +42,20 @@ app.post("/add", (req,res) =>{
     item.save()
     res.redirect("/")
 
-    
 });
+
+app.post("/delete", async (req,res) =>{
+    try{
+    const itemId =req.body.checkbox;
+
+   await  Item.findByIdAndDelete(itemId)
+   console.log("deleted successfully!")
+   res.redirect("/")
+    }catch(error){
+        console.error("Not deleted", error);
+        res.send("Some error")
+    }
+})
 
 
 
