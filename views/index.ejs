@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1 id="heading"><%= newDate %> git List</h1>
+    <h1 id="heading"><%= newDate %>  List</h1>
     <div class="box">
         
    
@@ -15,7 +15,7 @@
    <% items.forEach((item) => { %>
     <div class="item">
     <input type="checkbox">
-    <p><%= item %></p>
+    <p><%= item.name %></p>
 </div>
   <% }) %>
 
