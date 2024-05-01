@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-    <link rel="stylesheet" href="main.css">
-</head>
-<body>
-    <h1 id="heading"><%= newDate %>  List</h1>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <h1 id="heading"><%= newDate %> List</h1>
     <div class="box">
-        
-   
+      <% items.forEach((item) => { %>
+      <form action="/delete" method="post">
+        <div class="item">
+          <input
+            type="checkbox"
+            name="checkbox"
+            value="<%= item._id %>"
+            onChange="this.form.submit()"
+          />
+          <p><%= item.name %></p>
+        </div>
+      </form>
+      <% }) %>
 
-   <% items.forEach((item) => { %>
-    <form action="/delete" method="post">
-    <div class="item">
-    <input type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()">
-    <p><%= item.name %></p>
-</div>
-</form>
-  <% }) %>
-
-        
-    <form action="/add" method="post">
-        <input type="text" name="item" placeholder="New Item" >
+      <form action="/add" method="post">
+        <input type="text" name="item" placeholder="New Item" />
         <button>+</button>
-    </form>
-</div>
-    
-</body>
+      </form>
+    </div>
+  </body>
 </html>
