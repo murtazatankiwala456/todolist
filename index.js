@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import 'dotenv/config'
 
 const app = express();
 const port = 3000;
@@ -8,7 +9,7 @@ const port = 3000;
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb+srv://murtazadatabasemongo:happydb123@cluster0.3cwwkgy.mongodb.net/todolistDB");
+mongoose.connect(process.env.mongodb_URI);
 const itemsSchema = {
   name: String,
 };
